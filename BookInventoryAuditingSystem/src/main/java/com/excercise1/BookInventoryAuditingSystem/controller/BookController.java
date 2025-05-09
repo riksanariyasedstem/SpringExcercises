@@ -3,6 +3,7 @@ package com.excercise1.BookInventoryAuditingSystem.controller;
 import com.excercise1.BookInventoryAuditingSystem.dto.BookInputDTO;
 import com.excercise1.BookInventoryAuditingSystem.dto.BookResponseDTO;
 import com.excercise1.BookInventoryAuditingSystem.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class BookController {
         this.bookService = bookService;
     }
 @PostMapping
-    public ResponseEntity<BookResponseDTO> create(@RequestBody BookInputDTO input){
+    public ResponseEntity<BookResponseDTO> create( @Valid @RequestBody BookInputDTO input){
         return ResponseEntity.ok(bookService.createBook(input));
     }
 @GetMapping
@@ -32,7 +33,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookById(id));
    }
    @PutMapping("/{id}")
-   public ResponseEntity<BookResponseDTO>update( @PathVariable UUID id,@RequestBody BookInputDTO input){
+   public ResponseEntity<BookResponseDTO>update( @PathVariable UUID id, @Valid @RequestBody BookInputDTO input){
         return  ResponseEntity.ok(bookService.updateBook(id,input));
 
    }

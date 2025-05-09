@@ -24,7 +24,7 @@ import java.util.UUID;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
 
     @NotBlank
@@ -34,6 +34,7 @@ public class Book {
     private String author;
 
     @NotNull
+    @Column(unique = true)
     private String isbn;
 
     @NotNull
